@@ -42,15 +42,12 @@ server.get('/projects', (req, res) => {
   return res.json(projects);
 });
 
-// Show a projetc
+// Show a project
 server.get('/projects/:id', checkProjectExists, (req, res) => {
-  // const { id } = req.params;
-  // const project = req.project;  //projects.find( p => p.id === id );
-
   return res.json(req.project);
 });
 
-// Add a projetc
+// Add a project
 server.post('/projects', (req, res) => {
   const { id, title } = req.body;
   
@@ -66,20 +63,16 @@ server.post('/projects', (req, res) => {
 });
 
 // Update a project
-server.put('/projects/:id', checkProjectExists, (req, res) => {
-  // const { id } = req.params;
-  const { title } = req.body;
-  // const project = projects.find( p => p.id === id );
+server.put('/projects/:id', checkProjectExists, (req, res) => {  
+  const { title } = req.body;  
   req.project.title = title;
 
   return res.json(projects);
 });
 
 // Delete a project
-server.delete('/projects/:id', checkProjectExists, (req, res) => {
-  // const { id } = req.params;
-
-  // const project = projects.find( p => p.id === id );
+server.delete('/projects/:id', checkProjectExists, (req, res) => {  
+  
   let index = projects.indexOf(req.project);
   projects.splice(index, 1);
 
@@ -88,10 +81,8 @@ server.delete('/projects/:id', checkProjectExists, (req, res) => {
 
 // Add a task
 server.post('/projects/:id/tasks', checkProjectExists, (req, res) => {
-  // const { id } = req.params;
-  const { title } = req.body;
-
-  // const project = projects.find( p => p.id === id );
+  const { title } = req.body;  
+  
   req.project.tasks.push(title);
 
   return res.json(projects);
